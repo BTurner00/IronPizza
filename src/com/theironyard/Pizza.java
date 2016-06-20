@@ -80,4 +80,12 @@ public class Pizza {
     public void setOrderName(String orderName) {
         this.orderName = orderName;
     }
+
+    public ArrayList<Toppings> getTopping() {
+        return topping;
+    }
+
+    public void setTopping(ArrayList<Toppings> topping) {
+        this.topping = topping;
+    }
 }

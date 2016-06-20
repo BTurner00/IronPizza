@@ -90,6 +90,7 @@ public class Main {
     }
 
     public static int insertPizza(Connection conn, Pizza pizza) throws SQLException {
+
         PreparedStatement stmt = conn.prepareStatement("INSERT INTO pizzas VALUES (NULL, ?, ?, ?, ?)");
         stmt.setString(1, pizza.orderName);
         stmt.setString(2, pizza.size);
@@ -107,7 +108,6 @@ public class Main {
             int toppingId = insertTopping(conn, t);
             insertBuiltPizza(conn, pizzaId, toppingId);
         }
-
 
         return pizzaId;
     }
@@ -200,13 +200,12 @@ public class Main {
         Spark.externalStaticFileLocation("public");
         Spark.init();
 
-
         Spark.get(
                 "/pizza",
                 (request, response) ->{
                     ArrayList<Pizza> pizzas = selectPizzas(conn);
                     JsonSerializer s = new JsonSerializer();
-                    return s.serialize(pizzas);
+                    return s.include("*").serialize(pizzas);
                 }
         );
 
