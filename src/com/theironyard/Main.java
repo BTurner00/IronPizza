@@ -96,7 +96,6 @@ public class Main {
         stmt.setString(2, pizza.size);
         stmt.setString(3, pizza.crust);
         stmt.setString(4, pizza.sauce);
-
         stmt.execute();
         int pizzaId = -1;
         //returns inserted pizza's id
